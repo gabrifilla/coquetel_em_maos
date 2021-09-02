@@ -1,4 +1,4 @@
-# coquetel_em_maos
+# Coquetel em Mãos
 
 Um projeto para um app onde se criam uma lista de coqueteis com os ingredientes disponíveis
 
