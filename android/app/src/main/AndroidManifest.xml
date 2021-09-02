@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.coquetel_em_maos">
    <application
-        android:label="coquetel_em_maos"
-        android:icon="@mipmap/ic_launcher">
+        android:label="Coquetel em Mãos"
+        android:icon="@mipmap/coquetel_launch_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

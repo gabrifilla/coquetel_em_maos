@@ -11,14 +11,15 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tela Inicial Coqueteis"),
+        title: Text("Coquetel em Mãos"),
       ),
       drawer: DrawerNavigation(),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("./assets/images/coquetel.png"),
+            image: AssetImage("./assets/images/background/coquetelbg.jpg"),
             fit: BoxFit.cover,
+            colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
           ),
         ),
       ),
