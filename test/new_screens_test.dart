@@ -18,6 +18,8 @@ import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'helpers.dart';
+
 Future<BarState> _state(List<String> owned) async {
   SharedPreferences.setMockInitialValues({'ingredientes_no_bar': owned});
   final catalog = Catalog.fromJsonString(
@@ -33,6 +35,7 @@ Widget _wrap(BarState state, Widget home) => ChangeNotifierProvider.value(
 
 void main() {
   testWidgets('IA: mostra o aviso, gera e salva a receita', (tester) async {
+    reduceMotion(tester);
     final state = await _state(['cachaca', 'limao', 'acucar']);
     final service = AiRecipeService(
       baseUrl: 'https://api.exemplo',
@@ -77,6 +80,7 @@ void main() {
   testWidgets('IA: com menos de 2 ingredientes pede para montar o bar', (
     tester,
   ) async {
+    reduceMotion(tester);
     final state = await _state(['cachaca']);
     await tester.pumpWidget(
       _wrap(
@@ -90,6 +94,7 @@ void main() {
   testWidgets('editor: cria receita com ingrediente do catálogo', (
     tester,
   ) async {
+    reduceMotion(tester);
     final state = await _state([]);
     await tester.pumpWidget(_wrap(state, const RecipeEditorScreen()));
 
@@ -128,6 +133,7 @@ void main() {
   });
 
   testWidgets('lista: filtro por base e aba minhas receitas', (tester) async {
+    reduceMotion(tester);
     final state = await _state(['cachaca', 'limao', 'acucar', 'vodka']);
     await tester.pumpWidget(
       ChangeNotifierProvider.value(value: state, child: const CoquetelApp()),

@@ -23,6 +23,7 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.14.1
+  flutter_native_splash: ^2.4.8
 
 flutter_launcher_icons:
   image_path: "assets/icons/cocktailicon.png"
@@ -35,3 +36,28 @@ flutter:
   assets:
     - assets/data/
     - assets/images/background/
+    - assets/fonts/OFL-Fredoka.txt
+    - assets/fonts/OFL-Pacifico.txt
+
+  fonts:
+    - family: Fredoka
+      fonts:
+        - asset: assets/fonts/Fredoka-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Fredoka-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Fredoka-SemiBold.ttf
+          weight: 600
+    - family: Pacifico
+      fonts:
+        - asset: assets/fonts/Pacifico-Regular.ttf
+
+# Tela de abertura (iOS e Android): `dart run flutter_native_splash:create`
+flutter_native_splash:
+  color: "#150D28"
+  image: assets/images/splash.png
+  android_12:
+    color: "#150D28"
+    image: assets/images/splash.png
+  ios_content_mode: center
+  web: false

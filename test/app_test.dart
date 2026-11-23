@@ -11,10 +11,13 @@ import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'helpers.dart';
+
 void main() {
   testWidgets('montar o bar mostra a caipirinha e permite favoritar', (
     tester,
   ) async {
+    reduceMotion(tester);
     SharedPreferences.setMockInitialValues({});
     final catalog = Catalog.fromJsonString(
       File(catalogAssetPath).readAsStringSync(),
@@ -27,6 +30,7 @@ void main() {
 
     expect(find.text('Seu bar está vazio'), findsOneWidget);
 
+    await tester.ensureVisible(find.text('Montar meu bar'));
     await tester.tap(find.text('Montar meu bar'));
     await tester.pumpAndSettle();
     for (final name in ['Cachaça', 'Limão taiti', 'Açúcar']) {
@@ -44,6 +48,9 @@ void main() {
       await tester.tap(chip);
       await tester.pump();
     }
+
+    // Completar a caipirinha comemora o drink liberado.
+    expect(find.text('🎉 Liberou: Caipirinha!'), findsOneWidget);
 
     await tester.tap(find.text('Coquetéis').last);
     await tester.pumpAndSettle();

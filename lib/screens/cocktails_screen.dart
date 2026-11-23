@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import '../models/cocktail_match.dart';
 import '../state/bar_state.dart';
 import '../widgets/cocktail_tile.dart';
+import '../theme/party_theme.dart';
 import '../widgets/empty_state.dart';
+import '../widgets/party_effects.dart';
 import 'ai_recipe_screen.dart';
 import 'recipe_editor_screen.dart';
 
@@ -50,18 +52,6 @@ class _CocktailsScreenState extends State<CocktailsScreen> {
         .toList();
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Coquetel em Mãos'),
-        actions: [
-          IconButton(
-            tooltip: 'Criar com IA',
-            icon: const Icon(Icons.auto_awesome),
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute<void>(builder: (_) => const AiRecipeScreen()),
-            ),
-          ),
-        ],
-      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => Navigator.of(context).push(
           MaterialPageRoute<void>(builder: (_) => const RecipeEditorScreen()),
@@ -71,8 +61,9 @@ class _CocktailsScreenState extends State<CocktailsScreen> {
       ),
       body: Column(
         children: [
+          _Header(canMakeCount: canMake.length, hasBar: state.owned.isNotEmpty),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+            padding: const EdgeInsets.fromLTRB(16, 14, 16, 10),
             child: SearchBar(
               hintText: 'Buscar coquetel',
               leading: const Icon(Icons.search),
@@ -180,5 +171,94 @@ class _CocktailsScreenState extends State<CocktailsScreen> {
       ),
       _Filter.all || _Filter.mine => const SizedBox.shrink(),
     };
+  }
+}
+
+/// Topo da tela inicial: nome do app, quantos drinks dá para fazer e o botão da IA.
+class _Header extends StatelessWidget {
+  const _Header({required this.canMakeCount, required this.hasBar});
+
+  final int canMakeCount;
+  final bool hasBar;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final subtitle = !hasBar
+        ? 'Monte seu bar e a festa começa 🎶'
+        : canMakeCount == 0
+        ? 'Quase lá! Veja o que falta pouco 🍋'
+        : canMakeCount == 1
+        ? 'Hoje dá pra fazer 1 drink 🍹'
+        : 'Hoje dá pra fazer $canMakeCount drinks 🍹';
+
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        gradient: Party.headerGradient,
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(32)),
+      ),
+      child: ClipRRect(
+        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(32)),
+        child: BubblesBackground(
+          child: SafeArea(
+            bottom: false,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(20, 18, 12, 20),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Semantics(
+                          header: true,
+                          child: const Text(
+                            'Coquetel em Mãos',
+                            style: TextStyle(
+                              fontFamily: Party.logoFont,
+                              fontSize: 30,
+                              color: Party.text,
+                              height: 1.4,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          subtitle,
+                          style: text.titleMedium?.copyWith(
+                            color: Party.citrus,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Tooltip(
+                    message: 'Criar com IA',
+                    child: FilledButton.tonalIcon(
+                      style: FilledButton.styleFrom(
+                        backgroundColor: Colors.white.withValues(alpha: 0.14),
+                        foregroundColor: Party.text,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 12,
+                        ),
+                      ),
+                      onPressed: () => Navigator.of(context).push(
+                        MaterialPageRoute<void>(
+                          builder: (_) => const AiRecipeScreen(),
+                        ),
+                      ),
+                      icon: const Icon(Icons.auto_awesome, color: Party.citrus),
+                      label: const Text('IA'),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

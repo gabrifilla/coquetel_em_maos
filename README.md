@@ -61,4 +61,40 @@ flutter run --dart-define=AI_BACKEND_URL=https://...   # o define é opcional; s
 flutter test
 ```
 
-Para regerar os ícones: `dart run flutter_launcher_icons`.
+- Para regerar os ícones: `dart run flutter_launcher_icons`.
+- Para regerar a tela de abertura: `dart run flutter_native_splash:create`.
+
+## iPhone (iOS)
+
+O projeto já está pronto para iOS:
+- **Requisitos:** iOS 15 ou mais recente.
+- **Bundle id:** `com.gabrielfillacamargo.coquetelemmaos`.
+- **Orientação:** só em pé no iPhone; no iPad, todas.
+- **Visual:** barra de status clara, splash escura e ícone gerado.
+- **Permissões:** mensagens de câmera e galeria já configuradas.
+- **Envio para a loja:** `ITSAppUsesNonExemptEncryption = false`, o que pula a pergunta sobre criptografia no envio.
+
+Cada push roda o workflow `.github/workflows/ci.yml`, que **compila o app para iOS num Mac do GitHub** (sem assinatura), além dos testes e do build de Android.
+
+Para rodar no seu iPhone, você precisa de um Mac com Xcode:
+
+1. `flutter pub get` e depois abra `ios/Runner.xcworkspace` no Xcode.
+2. Em *Runner → Signing & Capabilities*, escolha seu **Team**. Uma Apple ID grátis já permite instalar no seu próprio iPhone, mas o app expira em 7 dias.
+3. Conecte o iPhone (com o *Modo de desenvolvedor* ativado) e rode `flutter run --release --dart-define=AI_BACKEND_URL=https://...`.
+
+Para publicar (TestFlight/App Store), é preciso a conta paga do Apple Developer Program. Os passos:
+
+1. Crie o app no App Store Connect com o mesmo bundle id. Se quiser outro, troque antes do primeiro envio, porque depois ele não muda.
+2. Rode `flutter build ipa --dart-define=AI_BACKEND_URL=https://...`.
+3. Envie o `build/ios/ipa/*.ipa` pelo app **Transporter**.
+
+## Visual
+
+O tema "noite de festa" fica em `lib/theme/party_theme.dart`: fundo roxo-noite com acentos coral, limão, cítrico e azul-lagoa. As fontes são **Fredoka** (textos) e **Pacifico** (logo), embutidas no app sob a licença OFL, para funcionarem offline.
+
+Cada coquetel ganha um copo desenhado (`lib/widgets/drink_glass.dart`) com:
+- o formato do copo da receita;
+- a cor do drink, tirada dos ingredientes (`lib/theme/drink_style.dart`);
+- a guarnição e bolhas subindo.
+
+Ao marcar um ingrediente que libera um drink novo, aparece um confete. Bolhas e confete são desligados quando o aparelho está com **Reduzir movimento** ativado.

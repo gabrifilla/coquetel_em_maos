@@ -1,8 +1,10 @@
+import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 import '../models/ingredient.dart';
 import '../state/bar_state.dart';
+import '../theme/party_theme.dart';
 
 class MyBarScreen extends StatefulWidget {
   const MyBarScreen({super.key});
@@ -17,7 +19,6 @@ class _MyBarScreenState extends State<MyBarScreen> {
   @override
   Widget build(BuildContext context) {
     final state = context.watch<BarState>();
-    final theme = Theme.of(context);
     final query = _query.trim().toLowerCase();
 
     final ingredients = state.catalog.ingredients
@@ -28,22 +29,13 @@ class _MyBarScreenState extends State<MyBarScreen> {
     final canMakeCount = state.canMake.length;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Meu bar')),
+      appBar: AppBar(title: const Text('Meu bar 🍾')),
       body: ListView(
         padding: const EdgeInsets.only(bottom: 24),
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              ownedCount == 0
-                  ? 'Marque o que você tem em casa.'
-                  : '$ownedCount ${ownedCount == 1 ? 'ingrediente' : 'ingredientes'}'
-                        ' · dá para fazer $canMakeCount '
-                        '${canMakeCount == 1 ? 'coquetel' : 'coquetéis'}',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
+            child: _Summary(ownedCount: ownedCount, canMakeCount: canMakeCount),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 0),
@@ -85,8 +77,8 @@ class _MyBarScreenState extends State<MyBarScreen> {
       Padding(
         padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
         child: Text(
-          category.label,
-          style: Theme.of(context).textTheme.titleSmall,
+          '${_emoji[category]}  ${category.label}',
+          style: Theme.of(context).textTheme.titleMedium,
         ),
       ),
       Padding(
@@ -99,11 +91,71 @@ class _MyBarScreenState extends State<MyBarScreen> {
               FilterChip(
                 label: Text(ingredient.name),
                 selected: state.hasIngredient(ingredient.id),
-                onSelected: (_) => state.toggleIngredient(ingredient.id),
+                onSelected: (_) {
+                  HapticFeedback.selectionClick();
+                  state.toggleIngredient(ingredient.id);
+                },
               ),
           ],
         ),
       ),
     ];
+  }
+}
+
+const _emoji = {
+  IngredientCategory.destilados: '🥃',
+  IngredientCategory.licores: '🍒',
+  IngredientCategory.vinhos: '🥂',
+  IngredientCategory.misturadores: '🧃',
+  IngredientCategory.frutasErvas: '🍋',
+  IngredientCategory.despensa: '🧂',
+};
+
+class _Summary extends StatelessWidget {
+  const _Summary({required this.ownedCount, required this.canMakeCount});
+
+  final int ownedCount;
+  final int canMakeCount;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    if (ownedCount == 0) {
+      return Text(
+        'Marque o que você tem em casa e veja a mágica acontecer ✨',
+        style: text.bodyLarge?.copyWith(color: Party.textMuted),
+      );
+    }
+    Widget stat(String value, String label, Color color) => Expanded(
+      child: Column(
+        children: [
+          Text(value, style: text.headlineMedium?.copyWith(color: color)),
+          Text(label, style: text.bodyMedium?.copyWith(color: Party.textMuted)),
+        ],
+      ),
+    );
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 14),
+      decoration: BoxDecoration(
+        gradient: Party.headerGradient,
+        borderRadius: BorderRadius.circular(22),
+      ),
+      child: Row(
+        children: [
+          stat(
+            '$ownedCount',
+            ownedCount == 1 ? 'ingrediente' : 'ingredientes',
+            Party.lime,
+          ),
+          Container(width: 1, height: 40, color: Colors.white24),
+          stat(
+            '$canMakeCount',
+            canMakeCount == 1 ? 'drink possível' : 'drinks possíveis',
+            Party.citrus,
+          ),
+        ],
+      ),
+    );
   }
 }
