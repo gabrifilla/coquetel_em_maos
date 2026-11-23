@@ -1,45 +1,46 @@
 import 'package:flutter/services.dart';
 import 'package:material_ui/material_ui.dart';
 
-/// Paleta "noite de festa": fundo roxo-noite e acentos neon de bar.
+/// Paleta "lounge de coquetel": fundo ameixa escuro e acentos suaves,
+/// tirados das cores do ícone (coral) e de ingredientes (pistache, champanhe).
 abstract final class Party {
-  static const night = Color(0xFF150D28);
-  static const nightHigh = Color(0xFF1F1538);
-  static const surface = Color(0xFF261A45);
-  static const surfaceHigh = Color(0xFF33245A);
-  static const outline = Color(0xFF4A3A78);
+  static const night = Color(0xFF17121D);
+  static const nightHigh = Color(0xFF1F1926);
+  static const surface = Color(0xFF282030);
+  static const surfaceHigh = Color(0xFF332A3C);
+  static const outline = Color(0xFF463B50);
 
-  static const pink = Color(0xFFFF5C8A); // drink de frutas vermelhas
-  static const lime = Color(0xFFC6F35C); // limão
-  static const citrus = Color(0xFFFFC94A); // laranja/maracujá
-  static const lagoon = Color(0xFF3DDCDB); // curaçau
-  static const grape = Color(0xFF9B6BFF);
+  static const coral = Color(0xFFEE7F76); // cor principal (do ícone)
+  static const pistachio = Color(0xFFB5D18C); // "você tem tudo"
+  static const champagne = Color(0xFFE6C487); // destaques e "falta pouco"
+  static const sea = Color(0xFF86C3BE); // receitas do usuário
+  static const grape = Color(0xFFA58FCF);
 
-  static const text = Color(0xFFF7F1FF);
-  static const textMuted = Color(0xFFB9ACD9);
+  static const text = Color(0xFFF4EEE8);
+  static const textMuted = Color(0xFFADA2B5);
 
   static const displayFont = 'Fredoka';
   static const logoFont = 'Pacifico';
 
-  /// Brilho rosa→roxo do topo das telas.
+  /// Tom de vinho bem discreto no topo das telas.
   static const headerGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFF3B1A5E), Color(0xFF6B1E5C), Color(0xFF2A1450)],
+    colors: [Color(0xFF2B2033), Color(0xFF3A2430), Color(0xFF241C2C)],
   );
 
   static ThemeData theme() {
     const scheme = ColorScheme(
       brightness: Brightness.dark,
-      primary: pink,
+      primary: coral,
       onPrimary: Color(0xFF2B0614),
       primaryContainer: Color(0xFF5C1A3A),
       onPrimaryContainer: Color(0xFFFFD9E3),
-      secondary: lime,
+      secondary: pistachio,
       onSecondary: Color(0xFF1C2600),
       secondaryContainer: Color(0xFF3A4A10),
       onSecondaryContainer: Color(0xFFE6FFB0),
-      tertiary: citrus,
+      tertiary: champagne,
       onTertiary: Color(0xFF2E2000),
       tertiaryContainer: Color(0xFF4D3A0A),
       onTertiaryContainer: Color(0xFFFFE9B3),
@@ -115,27 +116,27 @@ abstract final class Party {
       ),
       chipTheme: ChipThemeData(
         backgroundColor: surface,
-        selectedColor: lime,
+        selectedColor: const Color(0xFF45293A),
         disabledColor: surface,
-        // Texto escuro quando o chip está marcado (fundo limão), claro quando não.
         labelStyle: TextStyle(
           fontFamily: displayFont,
           fontWeight: FontWeight.w500,
           color: WidgetStateColor.resolveWith(
-            (s) => s.contains(WidgetState.selected)
-                ? const Color(0xFF1C2600)
-                : text,
+            (s) => s.contains(WidgetState.selected) ? text : textMuted,
           ),
         ),
+        // Usado pelo ChoiceChip quando marcado.
         secondaryLabelStyle: const TextStyle(
           fontFamily: displayFont,
           fontWeight: FontWeight.w600,
-          color: Color(0xFF1C2600),
+          color: text,
         ),
-        checkmarkColor: const Color(0xFF1C2600),
+        checkmarkColor: coral,
         side: WidgetStateBorderSide.resolveWith(
           (s) => BorderSide(
-            color: s.contains(WidgetState.selected) ? lime : outline,
+            color: s.contains(WidgetState.selected)
+                ? coral.withValues(alpha: 0.7)
+                : outline,
           ),
         ),
         shape: pill,
@@ -178,7 +179,7 @@ abstract final class Party {
         ),
       ),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
-        backgroundColor: pink,
+        backgroundColor: coral,
         foregroundColor: Color(0xFF2B0614),
         shape: StadiumBorder(),
         extendedTextStyle: TextStyle(
@@ -190,10 +191,10 @@ abstract final class Party {
       navigationBarTheme: NavigationBarThemeData(
         backgroundColor: nightHigh,
         surfaceTintColor: Colors.transparent,
-        indicatorColor: pink.withValues(alpha: 0.22),
+        indicatorColor: coral.withValues(alpha: 0.16),
         iconTheme: WidgetStateProperty.resolveWith(
           (s) => IconThemeData(
-            color: s.contains(WidgetState.selected) ? pink : textMuted,
+            color: s.contains(WidgetState.selected) ? coral : textMuted,
           ),
         ),
         labelTextStyle: WidgetStateProperty.resolveWith(
@@ -227,7 +228,8 @@ abstract final class Party {
       checkboxTheme: CheckboxThemeData(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         fillColor: WidgetStateProperty.resolveWith(
-          (s) => s.contains(WidgetState.selected) ? lime : Colors.transparent,
+          (s) =>
+              s.contains(WidgetState.selected) ? pistachio : Colors.transparent,
         ),
         checkColor: const WidgetStatePropertyAll(Color(0xFF1C2600)),
         side: const BorderSide(color: textMuted, width: 1.5),

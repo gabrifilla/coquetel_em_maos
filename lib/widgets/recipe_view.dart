@@ -69,7 +69,7 @@ List<Widget> recipeSections(BuildContext context, Cocktail cocktail) {
     const SizedBox(height: 16),
     _StatusBanner(missing: match.missingIds.length, accent: style.bottom),
     const SizedBox(height: 28),
-    const _SectionTitle(emoji: '🧉', title: 'Ingredientes'),
+    const _SectionTitle(title: 'Ingredientes'),
     Text(
       'Toque para marcar o que você tem.',
       style: text.bodySmall?.copyWith(color: Party.textMuted),
@@ -120,7 +120,7 @@ List<Widget> recipeSections(BuildContext context, Cocktail cocktail) {
       ),
     ],
     const SizedBox(height: 28),
-    const _SectionTitle(emoji: '🍸', title: 'Modo de preparo'),
+    const _SectionTitle(title: 'Modo de preparo'),
     const SizedBox(height: 8),
     for (final (index, step) in cocktail.steps.indexed)
       Padding(
@@ -161,19 +161,15 @@ List<Widget> recipeSections(BuildContext context, Cocktail cocktail) {
 }
 
 class _SectionTitle extends StatelessWidget {
-  const _SectionTitle({required this.emoji, required this.title});
+  const _SectionTitle({required this.title});
 
-  final String emoji;
   final String title;
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
       header: true,
-      child: Text(
-        '$emoji  $title',
-        style: Theme.of(context).textTheme.titleLarge,
-      ),
+      child: Text(title, style: Theme.of(context).textTheme.titleLarge),
     );
   }
 }
@@ -200,19 +196,26 @@ class _StatusBanner extends StatelessWidget {
         gradient: canMake
             ? LinearGradient(
                 colors: [
-                  Party.lime.withValues(alpha: 0.22),
-                  accent.withValues(alpha: 0.18),
+                  Party.pistachio.withValues(alpha: 0.12),
+                  accent.withValues(alpha: 0.08),
                 ],
               )
             : null,
         color: canMake ? null : Party.surface,
         border: Border.all(
-          color: canMake ? Party.lime.withValues(alpha: 0.6) : Party.outline,
+          color: canMake
+              ? Party.pistachio.withValues(alpha: 0.35)
+              : Party.outline,
         ),
       ),
       child: Row(
         children: [
-          Text(canMake ? '🥳' : '🛒', style: const TextStyle(fontSize: 22)),
+          Icon(
+            canMake
+                ? Icons.check_circle_outline
+                : Icons.shopping_basket_outlined,
+            color: canMake ? Party.pistachio : Party.textMuted,
+          ),
           const SizedBox(width: 12),
           Expanded(
             child: Text(
@@ -220,7 +223,7 @@ class _StatusBanner extends StatelessWidget {
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
-                color: canMake ? Party.lime : Party.text,
+                color: canMake ? Party.pistachio : Party.text,
               ),
             ),
           ),

@@ -18,7 +18,7 @@ class EmptyState extends StatelessWidget {
 
   static const _style = DrinkStyle(
     top: Color(0xFFFF8FB1),
-    bottom: Party.pink,
+    bottom: Party.coral,
     glass: GlassShape.martini,
     garnish: Garnish.lime,
   );

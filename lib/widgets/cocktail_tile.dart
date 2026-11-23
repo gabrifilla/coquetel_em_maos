@@ -24,10 +24,10 @@ class CocktailTile extends StatelessWidget {
     final style = DrinkStyle.of(cocktail);
 
     final (String status, Color statusColor) = match.canMake
-        ? ('Bora! Você tem tudo 🎉', Party.lime)
+        ? ('Você tem tudo', Party.pistachio)
         : (
             'Falta: ${match.missingIds.map(state.ingredientName).join(', ')}',
-            match.isAlmost ? Party.citrus : Party.textMuted,
+            match.isAlmost ? Party.champagne : Party.textMuted,
           );
 
     return Padding(
@@ -48,7 +48,7 @@ class CocktailTile extends StatelessWidget {
               border: Border(
                 left: BorderSide(
                   color: match.canMake ? style.bottom : Party.outline,
-                  width: 5,
+                  width: 3,
                 ),
               ),
             ),
@@ -72,11 +72,11 @@ class CocktailTile extends StatelessWidget {
                           ),
                           if (cocktail.origin == CocktailOrigin.ia) ...[
                             const SizedBox(width: 6),
-                            const _Badge(label: 'IA', color: Party.citrus),
+                            const _Badge(label: 'IA', color: Party.champagne),
                           ] else if (cocktail.origin ==
                               CocktailOrigin.usuario) ...[
                             const SizedBox(width: 6),
-                            const _Badge(label: 'MINHA', color: Party.lagoon),
+                            const _Badge(label: 'MINHA', color: Party.sea),
                           ],
                         ],
                       ),
@@ -97,7 +97,7 @@ class CocktailTile extends StatelessWidget {
                   icon: Icon(
                     favorite ? Icons.favorite : Icons.favorite_outline,
                   ),
-                  color: favorite ? Party.pink : Party.textMuted,
+                  color: favorite ? Party.coral : Party.textMuted,
                   onPressed: () {
                     HapticFeedback.lightImpact();
                     state.toggleFavorite(cocktail.id);

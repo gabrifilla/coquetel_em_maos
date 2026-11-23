@@ -29,7 +29,7 @@ class _MyBarScreenState extends State<MyBarScreen> {
     final canMakeCount = state.canMake.length;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Meu bar 🍾')),
+      appBar: AppBar(title: const Text('Meu bar')),
       body: ListView(
         padding: const EdgeInsets.only(bottom: 24),
         children: [
@@ -146,13 +146,13 @@ class _Summary extends StatelessWidget {
           stat(
             '$ownedCount',
             ownedCount == 1 ? 'ingrediente' : 'ingredientes',
-            Party.lime,
+            Party.pistachio,
           ),
           Container(width: 1, height: 40, color: Colors.white24),
           stat(
             '$canMakeCount',
             canMakeCount == 1 ? 'drink possível' : 'drinks possíveis',
-            Party.citrus,
+            Party.champagne,
           ),
         ],
       ),

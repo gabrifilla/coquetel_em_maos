@@ -91,7 +91,7 @@ class GlassPainter extends CustomPainter {
       s * 0.42,
       Paint()
         ..shader = RadialGradient(
-          colors: [style.bottom.withValues(alpha: 0.35), Colors.transparent],
+          colors: [style.bottom.withValues(alpha: 0.18), Colors.transparent],
         ).createShader(Rect.fromCircle(center: p(0.5, 0.55), radius: s * 0.42)),
     );
 
@@ -147,7 +147,7 @@ class GlassPainter extends CustomPainter {
       }
     }
     final rnd = math.Random(seed);
-    final bubble = Paint()..color = Colors.white.withValues(alpha: 0.55);
+    final bubble = Paint()..color = Colors.white.withValues(alpha: 0.45);
     for (var i = 0; i < 7; i++) {
       final x = bounds.left + bounds.width * (0.2 + rnd.nextDouble() * 0.6);
       final speed = 0.6 + rnd.nextDouble() * 0.8;
@@ -175,7 +175,7 @@ class GlassPainter extends CustomPainter {
         p(0.56, 0.86),
         p(0.74, 0.06),
         Paint()
-          ..color = const Color(0xFFFF5C8A)
+          ..color = const Color(0xFFEE7F76)
           ..strokeWidth = s * 0.045
           ..strokeCap = StrokeCap.round,
       );

@@ -185,12 +185,12 @@ class _Header extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final subtitle = !hasBar
-        ? 'Monte seu bar e a festa começa 🎶'
+        ? 'Monte seu bar e descubra o que dá pra preparar'
         : canMakeCount == 0
-        ? 'Quase lá! Veja o que falta pouco 🍋'
+        ? 'Quase lá! Veja o que falta pouco'
         : canMakeCount == 1
-        ? 'Hoje dá pra fazer 1 drink 🍹'
-        : 'Hoje dá pra fazer $canMakeCount drinks 🍹';
+        ? 'Hoje dá pra fazer 1 drink'
+        : 'Hoje dá pra fazer $canMakeCount drinks';
 
     return DecoratedBox(
       decoration: const BoxDecoration(
@@ -227,7 +227,7 @@ class _Header extends StatelessWidget {
                         Text(
                           subtitle,
                           style: text.titleMedium?.copyWith(
-                            color: Party.citrus,
+                            color: Party.champagne,
                           ),
                         ),
                       ],
@@ -237,7 +237,7 @@ class _Header extends StatelessWidget {
                     message: 'Criar com IA',
                     child: FilledButton.tonalIcon(
                       style: FilledButton.styleFrom(
-                        backgroundColor: Colors.white.withValues(alpha: 0.14),
+                        backgroundColor: Colors.white.withValues(alpha: 0.08),
                         foregroundColor: Party.text,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 14,
@@ -249,7 +249,10 @@ class _Header extends StatelessWidget {
                           builder: (_) => const AiRecipeScreen(),
                         ),
                       ),
-                      icon: const Icon(Icons.auto_awesome, color: Party.citrus),
+                      icon: const Icon(
+                        Icons.auto_awesome,
+                        color: Party.champagne,
+                      ),
                       label: const Text('IA'),
                     ),
                   ),

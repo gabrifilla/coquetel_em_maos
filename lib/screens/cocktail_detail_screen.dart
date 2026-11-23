@@ -41,7 +41,7 @@ class CocktailDetailScreen extends StatelessWidget {
                     ? 'Remover dos favoritos'
                     : 'Adicionar aos favoritos',
                 icon: Icon(favorite ? Icons.favorite : Icons.favorite_outline),
-                color: favorite ? Party.pink : null,
+                color: favorite ? Party.coral : null,
                 onPressed: () {
                   HapticFeedback.lightImpact();
                   state.toggleFavorite(cocktail.id);
@@ -55,7 +55,7 @@ class CocktailDetailScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [style.bottom.withValues(alpha: 0.55), Party.night],
+                    colors: [style.bottom.withValues(alpha: 0.28), Party.night],
                   ),
                 ),
                 child: BubblesBackground(

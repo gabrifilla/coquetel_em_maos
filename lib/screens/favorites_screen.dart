@@ -13,7 +13,7 @@ class FavoritesScreen extends StatelessWidget {
     final favorites = context.watch<BarState>().favoriteMatches;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Favoritos 💖')),
+      appBar: AppBar(title: const Text('Favoritos')),
       body: favorites.isEmpty
           ? const EmptyState(
               title: 'Nenhum favorito ainda',

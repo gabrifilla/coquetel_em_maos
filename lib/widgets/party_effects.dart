@@ -58,21 +58,22 @@ class _BubblesPainter extends CustomPainter {
 
   final double t;
 
+  // Tons suaves: champanhe, coral e branco, como bolhas de espumante.
   static const _colors = [
-    Party.pink,
-    Party.lime,
-    Party.citrus,
-    Party.lagoon,
-    Party.grape,
+    Party.champagne,
+    Party.coral,
+    Colors.white,
+    Party.champagne,
+    Party.pistachio,
   ];
 
   @override
   void paint(Canvas canvas, Size size) {
     final rnd = math.Random(7);
-    for (var i = 0; i < 18; i++) {
+    for (var i = 0; i < 10; i++) {
       final color = _colors[i % _colors.length];
       final x = rnd.nextDouble() * size.width;
-      final r = 3 + rnd.nextDouble() * 9;
+      final r = 2 + rnd.nextDouble() * 6;
       final speed = 0.5 + rnd.nextDouble();
       final phase = (t * speed + rnd.nextDouble()) % 1.0;
       final y = size.height + r - phase * (size.height + 2 * r);
@@ -80,7 +81,7 @@ class _BubblesPainter extends CustomPainter {
       final paint = Paint()
         ..style = i.isEven ? PaintingStyle.fill : PaintingStyle.stroke
         ..strokeWidth = 1.5
-        ..color = color.withValues(alpha: 0.18 + 0.25 * (1 - phase));
+        ..color = color.withValues(alpha: 0.08 + 0.14 * (1 - phase));
       canvas.drawCircle(Offset(x + wobble, y), r, paint);
     }
   }
@@ -147,7 +148,7 @@ class _ConfettiPainter extends CustomPainter {
     final rnd = math.Random(seed);
     final origin = Offset(size.width / 2, size.height * 0.35);
     final fade = t < 0.7 ? 1.0 : 1 - (t - 0.7) / 0.3;
-    for (var i = 0; i < 60; i++) {
+    for (var i = 0; i < 40; i++) {
       final angle = rnd.nextDouble() * math.pi * 2;
       final speed = 180 + rnd.nextDouble() * 320;
       final pos =

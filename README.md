@@ -90,7 +90,7 @@ Para publicar (TestFlight/App Store), é preciso a conta paga do Apple Developer
 
 ## Visual
 
-O tema "noite de festa" fica em `lib/theme/party_theme.dart`: fundo roxo-noite com acentos coral, limão, cítrico e azul-lagoa. As fontes são **Fredoka** (textos) e **Pacifico** (logo), embutidas no app sob a licença OFL, para funcionarem offline.
+O tema "lounge de coquetel" fica em `lib/theme/party_theme.dart`: fundo ameixa escuro com acentos suaves (coral do ícone, pistache e champanhe). As fontes são **Fredoka** (textos) e **Pacifico** (logo), embutidas no app sob a licença OFL, para funcionarem offline.
 
 Cada coquetel ganha um copo desenhado (`lib/widgets/drink_glass.dart`) com:
 - o formato do copo da receita;
