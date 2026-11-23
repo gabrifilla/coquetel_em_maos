@@ -1,16 +1,40 @@
 # Coquetel em Mãos
 
-Um projeto para um app onde se criam uma lista de coqueteis com os ingredientes disponíveis
+App Flutter que mostra quais coquetéis você consegue preparar com os ingredientes que tem em casa.
 
-## Getting Started
+## Funcionalidades
 
-This project is a starting point for a Flutter application.
+- **Coquetéis**: lista o que dá para fazer agora, o que está a 1 ou 2 ingredientes de distância ("Falta pouco") e o catálogo completo, com busca.
+- **Receita**: ingredientes com quantidade (marque ali mesmo o que você tem), copo, modo de preparo e botão para mandar o que falta para a lista de compras.
+- **Meu bar**: ingredientes agrupados por categoria para marcar o que você tem.
+- **Favoritos**: coquetéis marcados com o coração.
+- **Lista de compras**: ao marcar um item como comprado, ele vai direto para o seu bar. Também sugere os ingredientes que liberariam mais coquetéis.
 
-A few resources to get you started if this is your first Flutter project:
+Ingredientes opcionais da receita (guarnição, borda de sal etc.) não impedem o preparo.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Estrutura
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```
+assets/data/catalogo.json   catálogo de ingredientes e receitas (português)
+lib/models/                 Ingredient, Cocktail, Catalog, CocktailMatch
+lib/data/                   leitura do catálogo e dados do usuário (shared_preferences)
+lib/state/bar_state.dart    estado do app (ChangeNotifier + provider)
+lib/screens/                telas
+lib/widgets/                componentes reutilizados
+```
+
+### Como adicionar um coquetel
+
+Inclua um item em `coqueteis` no `assets/data/catalogo.json`. Cada ingrediente referencia um `id` de `ingredientes` e pode ter `"opcional": true`. O teste `test/catalog_test.dart` confere se os ids existem.
+
+## Rodando
+
+Requer Flutter 3.50+ (Dart 3.14).
+
+```
+flutter pub get
+flutter run
+flutter test
+```
+
+Para regerar os ícones: `dart run flutter_launcher_icons`.

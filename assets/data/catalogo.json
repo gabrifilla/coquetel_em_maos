@@ -1,0 +1,505 @@
+{
+  "ingredientes": [
+    { "id": "cachaca", "nome": "Cachaça", "categoria": "destilados" },
+    { "id": "vodka", "nome": "Vodka", "categoria": "destilados" },
+    { "id": "rum_branco", "nome": "Rum branco", "categoria": "destilados" },
+    { "id": "gin", "nome": "Gin", "categoria": "destilados" },
+    { "id": "tequila", "nome": "Tequila prata", "categoria": "destilados" },
+    { "id": "bourbon", "nome": "Whisky bourbon", "categoria": "destilados" },
+
+    { "id": "triple_sec", "nome": "Triple sec / Cointreau", "categoria": "licores" },
+    { "id": "campari", "nome": "Campari", "categoria": "licores" },
+    { "id": "aperol", "nome": "Aperol", "categoria": "licores" },
+    { "id": "vermute_rosso", "nome": "Vermute rosso (tinto)", "categoria": "licores" },
+    { "id": "vermute_seco", "nome": "Vermute seco", "categoria": "licores" },
+    { "id": "licor_cafe", "nome": "Licor de café", "categoria": "licores" },
+    { "id": "licor_pessego", "nome": "Licor de pêssego", "categoria": "licores" },
+    { "id": "curacau_blue", "nome": "Curaçau blue", "categoria": "licores" },
+    { "id": "angostura", "nome": "Angostura (bitter)", "categoria": "licores" },
+
+    { "id": "espumante", "nome": "Espumante / Prosecco", "categoria": "vinhos" },
+
+    { "id": "agua_tonica", "nome": "Água tônica", "categoria": "misturadores" },
+    { "id": "agua_com_gas", "nome": "Água com gás", "categoria": "misturadores" },
+    { "id": "refrigerante_cola", "nome": "Refrigerante de cola", "categoria": "misturadores" },
+    { "id": "refrigerante_limao", "nome": "Refrigerante de limão", "categoria": "misturadores" },
+    { "id": "ginger_beer", "nome": "Ginger beer", "categoria": "misturadores" },
+    { "id": "suco_laranja", "nome": "Suco de laranja", "categoria": "misturadores" },
+    { "id": "suco_abacaxi", "nome": "Suco de abacaxi", "categoria": "misturadores" },
+    { "id": "suco_cranberry", "nome": "Suco de cranberry", "categoria": "misturadores" },
+    { "id": "suco_tomate", "nome": "Suco de tomate", "categoria": "misturadores" },
+    { "id": "suco_toranja", "nome": "Suco de toranja (grapefruit)", "categoria": "misturadores" },
+
+    { "id": "limao", "nome": "Limão taiti", "categoria": "frutas_ervas" },
+    { "id": "laranja", "nome": "Laranja", "categoria": "frutas_ervas" },
+    { "id": "hortela", "nome": "Hortelã", "categoria": "frutas_ervas" },
+    { "id": "azeitona", "nome": "Azeitona verde", "categoria": "frutas_ervas" },
+    { "id": "cereja", "nome": "Cereja em calda", "categoria": "frutas_ervas" },
+
+    { "id": "acucar", "nome": "Açúcar", "categoria": "despensa" },
+    { "id": "xarope_acucar", "nome": "Xarope de açúcar", "categoria": "despensa" },
+    { "id": "groselha", "nome": "Xarope de groselha", "categoria": "despensa" },
+    { "id": "leite_coco", "nome": "Leite de coco", "categoria": "despensa" },
+    { "id": "leite_condensado", "nome": "Leite condensado", "categoria": "despensa" },
+    { "id": "creme_leite", "nome": "Creme de leite", "categoria": "despensa" },
+    { "id": "cafe", "nome": "Café espresso", "categoria": "despensa" },
+    { "id": "ovo", "nome": "Ovo (clara)", "categoria": "despensa" },
+    { "id": "sal", "nome": "Sal", "categoria": "despensa" },
+    { "id": "molho_ingles", "nome": "Molho inglês", "categoria": "despensa" },
+    { "id": "molho_pimenta", "nome": "Molho de pimenta", "categoria": "despensa" }
+  ],
+
+  "coqueteis": [
+    {
+      "id": "caipirinha",
+      "nome": "Caipirinha",
+      "descricao": "O clássico brasileiro: cachaça, limão e açúcar.",
+      "copo": "Copo baixo (old fashioned)",
+      "ingredientes": [
+        { "id": "cachaca", "quantidade": "60 ml" },
+        { "id": "limao", "quantidade": "1 unidade" },
+        { "id": "acucar", "quantidade": "2 colheres de chá" }
+      ],
+      "preparo": [
+        "Corte o limão em gomos e retire a parte branca do centro.",
+        "Macere o limão com o açúcar no copo.",
+        "Complete o copo com gelo e adicione a cachaça.",
+        "Mexa bem e sirva."
+      ]
+    },
+    {
+      "id": "caipiroska",
+      "nome": "Caipiroska",
+      "descricao": "A versão da caipirinha feita com vodka.",
+      "copo": "Copo baixo (old fashioned)",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "60 ml" },
+        { "id": "limao", "quantidade": "1 unidade" },
+        { "id": "acucar", "quantidade": "2 colheres de chá" }
+      ],
+      "preparo": [
+        "Corte o limão em gomos e retire a parte branca do centro.",
+        "Macere o limão com o açúcar no copo.",
+        "Complete o copo com gelo e adicione a vodka.",
+        "Mexa bem e sirva."
+      ]
+    },
+    {
+      "id": "batida_coco",
+      "nome": "Batida de Coco",
+      "descricao": "Cremosa e doce, presença garantida em festa junina.",
+      "copo": "Copo baixo",
+      "ingredientes": [
+        { "id": "cachaca", "quantidade": "60 ml" },
+        { "id": "leite_coco", "quantidade": "60 ml" },
+        { "id": "leite_condensado", "quantidade": "60 ml" }
+      ],
+      "preparo": [
+        "Bata todos os ingredientes no liquidificador com algumas pedras de gelo.",
+        "Sirva em seguida."
+      ]
+    },
+    {
+      "id": "rabo_de_galo",
+      "nome": "Rabo de Galo",
+      "descricao": "Clássico de boteco paulistano, mistura de cachaça e vermute.",
+      "copo": "Copo baixo",
+      "ingredientes": [
+        { "id": "cachaca", "quantidade": "50 ml" },
+        { "id": "vermute_rosso", "quantidade": "25 ml" }
+      ],
+      "preparo": [
+        "Coloque gelo no copo.",
+        "Adicione a cachaça e o vermute e mexa."
+      ]
+    },
+    {
+      "id": "mojito",
+      "nome": "Mojito",
+      "descricao": "Refrescante drink cubano com hortelã e limão.",
+      "copo": "Copo alto (highball)",
+      "ingredientes": [
+        { "id": "rum_branco", "quantidade": "50 ml" },
+        { "id": "limao", "quantidade": "1/2 unidade" },
+        { "id": "acucar", "quantidade": "2 colheres de chá" },
+        { "id": "hortela", "quantidade": "8 folhas" },
+        { "id": "agua_com_gas", "quantidade": "para completar" }
+      ],
+      "preparo": [
+        "Macere levemente a hortelã com o açúcar e o limão em gomos.",
+        "Adicione o rum e complete o copo com gelo.",
+        "Complete com água com gás e mexa delicadamente."
+      ]
+    },
+    {
+      "id": "daiquiri",
+      "nome": "Daiquiri",
+      "descricao": "Rum, limão e açúcar em equilíbrio perfeito.",
+      "copo": "Taça coupe",
+      "ingredientes": [
+        { "id": "rum_branco", "quantidade": "60 ml" },
+        { "id": "limao", "quantidade": "30 ml de suco" },
+        { "id": "xarope_acucar", "quantidade": "15 ml" }
+      ],
+      "preparo": [
+        "Bata todos os ingredientes na coqueteleira com gelo.",
+        "Coe para a taça gelada."
+      ]
+    },
+    {
+      "id": "cuba_libre",
+      "nome": "Cuba Libre",
+      "descricao": "Rum com refrigerante de cola e um toque de limão.",
+      "copo": "Copo alto (highball)",
+      "ingredientes": [
+        { "id": "rum_branco", "quantidade": "50 ml" },
+        { "id": "refrigerante_cola", "quantidade": "120 ml" },
+        { "id": "limao", "quantidade": "1/4 unidade" }
+      ],
+      "preparo": [
+        "Encha o copo com gelo.",
+        "Esprema o limão no copo e adicione o rum.",
+        "Complete com o refrigerante de cola."
+      ]
+    },
+    {
+      "id": "pina_colada",
+      "nome": "Piña Colada",
+      "descricao": "Tropical e cremosa, com abacaxi e coco.",
+      "copo": "Copo hurricane ou alto",
+      "ingredientes": [
+        { "id": "rum_branco", "quantidade": "50 ml" },
+        { "id": "suco_abacaxi", "quantidade": "90 ml" },
+        { "id": "leite_coco", "quantidade": "30 ml" },
+        { "id": "leite_condensado", "quantidade": "15 ml", "opcional": true }
+      ],
+      "preparo": [
+        "Bata todos os ingredientes no liquidificador com gelo.",
+        "Sirva no copo e decore com um pedaço de abacaxi."
+      ]
+    },
+    {
+      "id": "margarita",
+      "nome": "Margarita",
+      "descricao": "O clássico mexicano com tequila, licor de laranja e limão.",
+      "copo": "Taça margarita",
+      "ingredientes": [
+        { "id": "tequila", "quantidade": "50 ml" },
+        { "id": "triple_sec", "quantidade": "25 ml" },
+        { "id": "limao", "quantidade": "25 ml de suco" },
+        { "id": "sal", "quantidade": "para a borda", "opcional": true }
+      ],
+      "preparo": [
+        "Se quiser, umedeça a borda da taça com limão e passe no sal.",
+        "Bata os ingredientes na coqueteleira com gelo.",
+        "Coe para a taça."
+      ]
+    },
+    {
+      "id": "tequila_sunrise",
+      "nome": "Tequila Sunrise",
+      "descricao": "O degradê de laranja e groselha lembra o nascer do sol.",
+      "copo": "Copo alto (highball)",
+      "ingredientes": [
+        { "id": "tequila", "quantidade": "45 ml" },
+        { "id": "suco_laranja", "quantidade": "90 ml" },
+        { "id": "groselha", "quantidade": "15 ml" }
+      ],
+      "preparo": [
+        "Encha o copo com gelo e adicione a tequila e o suco de laranja.",
+        "Despeje a groselha devagar, para que ela desça ao fundo.",
+        "Sirva sem mexer."
+      ]
+    },
+    {
+      "id": "paloma",
+      "nome": "Paloma",
+      "descricao": "Tequila com toranja, cítrico e levemente amargo.",
+      "copo": "Copo alto (highball)",
+      "ingredientes": [
+        { "id": "tequila", "quantidade": "50 ml" },
+        { "id": "suco_toranja", "quantidade": "60 ml" },
+        { "id": "limao", "quantidade": "15 ml de suco" },
+        { "id": "agua_com_gas", "quantidade": "para completar" },
+        { "id": "sal", "quantidade": "uma pitada", "opcional": true }
+      ],
+      "preparo": [
+        "Encha o copo com gelo.",
+        "Adicione a tequila, o suco de toranja, o limão e a pitada de sal.",
+        "Complete com água com gás e mexa."
+      ]
+    },
+    {
+      "id": "gin_tonica",
+      "nome": "Gin Tônica",
+      "descricao": "Simples e refrescante.",
+      "copo": "Taça balão",
+      "ingredientes": [
+        { "id": "gin", "quantidade": "50 ml" },
+        { "id": "agua_tonica", "quantidade": "150 ml" },
+        { "id": "limao", "quantidade": "1 rodela", "opcional": true }
+      ],
+      "preparo": [
+        "Encha a taça com gelo.",
+        "Adicione o gin e complete com a água tônica.",
+        "Decore com a rodela de limão."
+      ]
+    },
+    {
+      "id": "negroni",
+      "nome": "Negroni",
+      "descricao": "Partes iguais de gin, Campari e vermute: amargo e elegante.",
+      "copo": "Copo baixo (old fashioned)",
+      "ingredientes": [
+        { "id": "gin", "quantidade": "30 ml" },
+        { "id": "campari", "quantidade": "30 ml" },
+        { "id": "vermute_rosso", "quantidade": "30 ml" },
+        { "id": "laranja", "quantidade": "1 casca", "opcional": true }
+      ],
+      "preparo": [
+        "Mexa os ingredientes com gelo em um copo misturador.",
+        "Coe para o copo com uma pedra grande de gelo.",
+        "Finalize com a casca de laranja."
+      ]
+    },
+    {
+      "id": "dry_martini",
+      "nome": "Dry Martini",
+      "descricao": "O mais icônico dos coquetéis: gin e um toque de vermute seco.",
+      "copo": "Taça martini",
+      "ingredientes": [
+        { "id": "gin", "quantidade": "60 ml" },
+        { "id": "vermute_seco", "quantidade": "10 ml" },
+        { "id": "azeitona", "quantidade": "1 unidade", "opcional": true }
+      ],
+      "preparo": [
+        "Mexa o gin e o vermute com bastante gelo.",
+        "Coe para a taça gelada.",
+        "Decore com a azeitona."
+      ]
+    },
+    {
+      "id": "tom_collins",
+      "nome": "Tom Collins",
+      "descricao": "Uma limonada com gin e gás.",
+      "copo": "Copo alto (collins)",
+      "ingredientes": [
+        { "id": "gin", "quantidade": "45 ml" },
+        { "id": "limao", "quantidade": "30 ml de suco" },
+        { "id": "xarope_acucar", "quantidade": "15 ml" },
+        { "id": "agua_com_gas", "quantidade": "60 ml" }
+      ],
+      "preparo": [
+        "Bata o gin, o limão e o xarope na coqueteleira com gelo.",
+        "Coe para o copo com gelo e complete com água com gás."
+      ]
+    },
+    {
+      "id": "aperol_spritz",
+      "nome": "Aperol Spritz",
+      "descricao": "O aperitivo italiano leve e borbulhante.",
+      "copo": "Taça de vinho",
+      "ingredientes": [
+        { "id": "espumante", "quantidade": "90 ml" },
+        { "id": "aperol", "quantidade": "60 ml" },
+        { "id": "agua_com_gas", "quantidade": "30 ml" },
+        { "id": "laranja", "quantidade": "1 rodela", "opcional": true }
+      ],
+      "preparo": [
+        "Encha a taça com gelo.",
+        "Adicione o espumante, o Aperol e a água com gás, nessa ordem.",
+        "Decore com a rodela de laranja."
+      ]
+    },
+    {
+      "id": "mimosa",
+      "nome": "Mimosa",
+      "descricao": "Espumante e suco de laranja, perfeito para o brunch.",
+      "copo": "Taça flute",
+      "ingredientes": [
+        { "id": "espumante", "quantidade": "75 ml" },
+        { "id": "suco_laranja", "quantidade": "75 ml" }
+      ],
+      "preparo": [
+        "Coloque o suco de laranja gelado na taça.",
+        "Complete com o espumante gelado."
+      ]
+    },
+    {
+      "id": "moscow_mule",
+      "nome": "Moscow Mule",
+      "descricao": "Vodka, ginger beer e limão, tradicionalmente na caneca de cobre.",
+      "copo": "Caneca de cobre",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "50 ml" },
+        { "id": "limao", "quantidade": "15 ml de suco" },
+        { "id": "ginger_beer", "quantidade": "120 ml" }
+      ],
+      "preparo": [
+        "Encha a caneca com gelo.",
+        "Adicione a vodka e o limão.",
+        "Complete com ginger beer e mexa."
+      ]
+    },
+    {
+      "id": "cosmopolitan",
+      "nome": "Cosmopolitan",
+      "descricao": "Vodka com cranberry e licor de laranja.",
+      "copo": "Taça martini",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "40 ml" },
+        { "id": "triple_sec", "quantidade": "15 ml" },
+        { "id": "suco_cranberry", "quantidade": "30 ml" },
+        { "id": "limao", "quantidade": "15 ml de suco" }
+      ],
+      "preparo": [
+        "Bata todos os ingredientes na coqueteleira com gelo.",
+        "Coe para a taça gelada."
+      ]
+    },
+    {
+      "id": "sex_on_the_beach",
+      "nome": "Sex on the Beach",
+      "descricao": "Frutado e colorido, com pêssego, laranja e cranberry.",
+      "copo": "Copo alto (highball)",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "40 ml" },
+        { "id": "licor_pessego", "quantidade": "20 ml" },
+        { "id": "suco_laranja", "quantidade": "40 ml" },
+        { "id": "suco_cranberry", "quantidade": "40 ml" }
+      ],
+      "preparo": [
+        "Bata os ingredientes na coqueteleira com gelo.",
+        "Sirva no copo com gelo."
+      ]
+    },
+    {
+      "id": "hi_fi",
+      "nome": "Hi-Fi",
+      "descricao": "Vodka com suco de laranja, simples assim.",
+      "copo": "Copo alto (highball)",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "50 ml" },
+        { "id": "suco_laranja", "quantidade": "120 ml" }
+      ],
+      "preparo": [
+        "Encha o copo com gelo.",
+        "Adicione a vodka e complete com o suco de laranja."
+      ]
+    },
+    {
+      "id": "blue_lagoon",
+      "nome": "Blue Lagoon",
+      "descricao": "Azul vibrante, cítrico e refrescante.",
+      "copo": "Copo alto (highball)",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "40 ml" },
+        { "id": "curacau_blue", "quantidade": "20 ml" },
+        { "id": "refrigerante_limao", "quantidade": "120 ml" }
+      ],
+      "preparo": [
+        "Encha o copo com gelo.",
+        "Adicione a vodka e o curaçau blue.",
+        "Complete com o refrigerante de limão."
+      ]
+    },
+    {
+      "id": "bloody_mary",
+      "nome": "Bloody Mary",
+      "descricao": "Salgado e picante, clássico do brunch.",
+      "copo": "Copo alto (highball)",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "45 ml" },
+        { "id": "suco_tomate", "quantidade": "90 ml" },
+        { "id": "limao", "quantidade": "15 ml de suco" },
+        { "id": "molho_ingles", "quantidade": "3 gotas" },
+        { "id": "molho_pimenta", "quantidade": "a gosto", "opcional": true },
+        { "id": "sal", "quantidade": "a gosto", "opcional": true }
+      ],
+      "preparo": [
+        "Coloque todos os ingredientes no copo com gelo.",
+        "Mexa bem e ajuste o tempero a gosto."
+      ]
+    },
+    {
+      "id": "espresso_martini",
+      "nome": "Espresso Martini",
+      "descricao": "Vodka, licor de café e espresso fresco.",
+      "copo": "Taça martini",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "50 ml" },
+        { "id": "licor_cafe", "quantidade": "30 ml" },
+        { "id": "cafe", "quantidade": "30 ml" },
+        { "id": "xarope_acucar", "quantidade": "10 ml", "opcional": true }
+      ],
+      "preparo": [
+        "Bata tudo vigorosamente na coqueteleira com gelo, para formar espuma.",
+        "Coe para a taça gelada."
+      ]
+    },
+    {
+      "id": "white_russian",
+      "nome": "White Russian",
+      "descricao": "Vodka, licor de café e creme de leite.",
+      "copo": "Copo baixo (old fashioned)",
+      "ingredientes": [
+        { "id": "vodka", "quantidade": "50 ml" },
+        { "id": "licor_cafe", "quantidade": "20 ml" },
+        { "id": "creme_leite", "quantidade": "30 ml" }
+      ],
+      "preparo": [
+        "Coloque gelo no copo e adicione a vodka e o licor de café.",
+        "Despeje o creme de leite por cima e mexa levemente."
+      ]
+    },
+    {
+      "id": "old_fashioned",
+      "nome": "Old Fashioned",
+      "descricao": "Whisky, açúcar e bitter: o coquetel mais antigo da lista.",
+      "copo": "Copo baixo (old fashioned)",
+      "ingredientes": [
+        { "id": "bourbon", "quantidade": "60 ml" },
+        { "id": "xarope_acucar", "quantidade": "10 ml" },
+        { "id": "angostura", "quantidade": "2 dashes" },
+        { "id": "laranja", "quantidade": "1 casca", "opcional": true }
+      ],
+      "preparo": [
+        "Mexa o whisky, o xarope e a angostura com gelo no copo.",
+        "Finalize com a casca de laranja torcida por cima."
+      ]
+    },
+    {
+      "id": "whisky_sour",
+      "nome": "Whisky Sour",
+      "descricao": "Whisky com limão e açúcar, com espuma de clara opcional.",
+      "copo": "Copo baixo (old fashioned)",
+      "ingredientes": [
+        { "id": "bourbon", "quantidade": "60 ml" },
+        { "id": "limao", "quantidade": "30 ml de suco" },
+        { "id": "xarope_acucar", "quantidade": "20 ml" },
+        { "id": "ovo", "quantidade": "1 clara", "opcional": true }
+      ],
+      "preparo": [
+        "Se usar a clara, bata tudo na coqueteleira sem gelo primeiro.",
+        "Bata novamente com gelo.",
+        "Coe para o copo com gelo."
+      ]
+    },
+    {
+      "id": "manhattan",
+      "nome": "Manhattan",
+      "descricao": "Whisky e vermute rosso, encorpado e aromático.",
+      "copo": "Taça coupe",
+      "ingredientes": [
+        { "id": "bourbon", "quantidade": "60 ml" },
+        { "id": "vermute_rosso", "quantidade": "30 ml" },
+        { "id": "angostura", "quantidade": "2 dashes" },
+        { "id": "cereja", "quantidade": "1 unidade", "opcional": true }
+      ],
+      "preparo": [
+        "Mexa os ingredientes com gelo em um copo misturador.",
+        "Coe para a taça gelada e decore com a cereja."
+      ]
+    }
+  ]
+}
