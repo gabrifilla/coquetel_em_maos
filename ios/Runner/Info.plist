@@ -6,6 +6,10 @@
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Para tirar fotos das suas receitas de coquetel.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Para escolher fotos das suas receitas de coquetel.</string>
 	<key>CFBundleDisplayName</key>
 	<string>Coquetel em Mãos</string>
 	<key>CFBundleExecutable</key>

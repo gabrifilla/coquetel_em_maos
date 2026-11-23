@@ -1,9 +1,11 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
+import '../models/cocktail.dart';
 import '../models/cocktail_match.dart';
 import '../screens/cocktail_detail_screen.dart';
 import '../state/bar_state.dart';
+import 'cocktail_image.dart';
 
 class CocktailTile extends StatelessWidget {
   const CocktailTile({super.key, required this.match});
@@ -31,18 +33,18 @@ class CocktailTile extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: match.canMake
-              ? colors.primaryContainer
-              : colors.surfaceContainerHighest,
-          child: Icon(
-            match.canMake ? Icons.local_bar : Icons.local_bar_outlined,
-            color: match.canMake
-                ? colors.onPrimaryContainer
-                : colors.onSurfaceVariant,
-          ),
+        leading: CocktailImage(cocktail: cocktail),
+        title: Row(
+          children: [
+            Flexible(
+              child: Text(cocktail.name, overflow: TextOverflow.ellipsis),
+            ),
+            if (cocktail.origin == CocktailOrigin.ia) ...[
+              const SizedBox(width: 6),
+              Icon(Icons.auto_awesome, size: 16, color: colors.tertiary),
+            ],
+          ],
         ),
-        title: Text(cocktail.name),
         subtitle: Text(
           status,
           maxLines: 2,

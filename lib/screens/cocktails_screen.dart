@@ -5,8 +5,10 @@ import '../models/cocktail_match.dart';
 import '../state/bar_state.dart';
 import '../widgets/cocktail_tile.dart';
 import '../widgets/empty_state.dart';
+import 'ai_recipe_screen.dart';
+import 'recipe_editor_screen.dart';
 
-enum _Filter { canMake, almost, all }
+enum _Filter { canMake, almost, all, mine }
 
 class CocktailsScreen extends StatefulWidget {
   const CocktailsScreen({super.key, required this.onOpenBar});
@@ -22,26 +24,51 @@ class _CocktailsScreenState extends State<CocktailsScreen> {
   _Filter _filter = _Filter.canMake;
   String _query = '';
 
+  /// Destilado escolhido no filtro "Base" (null = qualquer).
+  String? _base;
+
   @override
   Widget build(BuildContext context) {
     final state = context.watch<BarState>();
     final canMake = state.canMake;
     final almost = state.almost;
+    final mine = state.matches.where((m) => m.cocktail.isUserRecipe).toList();
+    final spirits = state.baseSpirits;
 
     final List<CocktailMatch> source = switch (_filter) {
       _Filter.canMake => canMake,
       _Filter.almost => almost,
       _Filter.all => state.matches,
+      _Filter.mine => mine,
     };
     final query = _query.trim().toLowerCase();
-    final visible = query.isEmpty
-        ? source
-        : source
-              .where((m) => m.cocktail.name.toLowerCase().contains(query))
-              .toList();
+    final visible = source
+        .where(
+          (m) => query.isEmpty || m.cocktail.name.toLowerCase().contains(query),
+        )
+        .where((m) => _base == null || m.cocktail.uses(_base!))
+        .toList();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Coquetel em Mãos')),
+      appBar: AppBar(
+        title: const Text('Coquetel em Mãos'),
+        actions: [
+          IconButton(
+            tooltip: 'Criar com IA',
+            icon: const Icon(Icons.auto_awesome),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const AiRecipeScreen()),
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(builder: (_) => const RecipeEditorScreen()),
+        ),
+        icon: const Icon(Icons.add),
+        label: const Text('Nova receita'),
+      ),
       body: Column(
         children: [
           Padding(
@@ -53,30 +80,49 @@ class _CocktailsScreenState extends State<CocktailsScreen> {
               onChanged: (value) => setState(() => _query = value),
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              spacing: 8,
-              children: [
-                _filterChip(_Filter.canMake, 'Posso fazer (${canMake.length})'),
-                _filterChip(_Filter.almost, 'Falta pouco (${almost.length})'),
-                _filterChip(_Filter.all, 'Todos (${state.matches.length})'),
-              ],
+          _chipRow([
+            _filterChip(_Filter.canMake, 'Posso fazer (${canMake.length})'),
+            _filterChip(_Filter.almost, 'Falta pouco (${almost.length})'),
+            _filterChip(_Filter.all, 'Todos (${state.matches.length})'),
+            _filterChip(_Filter.mine, 'Minhas receitas (${mine.length})'),
+          ]),
+          const SizedBox(height: 4),
+          _chipRow([
+            ChoiceChip(
+              label: const Text('Qualquer base'),
+              selected: _base == null,
+              onSelected: (_) => setState(() => _base = null),
             ),
-          ),
+            for (final spirit in spirits)
+              ChoiceChip(
+                label: Text(spirit.name),
+                selected: _base == spirit.id,
+                onSelected: (_) => setState(
+                  () => _base = _base == spirit.id ? null : spirit.id,
+                ),
+              ),
+          ]),
           const SizedBox(height: 8),
           Expanded(
             child: visible.isEmpty
                 ? _emptyState(state)
                 : ListView.builder(
-                    padding: const EdgeInsets.only(bottom: 16),
+                    // Espaço para o botão "Nova receita" não cobrir o último item.
+                    padding: const EdgeInsets.only(bottom: 88),
                     itemCount: visible.length,
                     itemBuilder: (_, i) => CocktailTile(match: visible[i]),
                   ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _chipRow(List<Widget> chips) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Row(spacing: 8, children: chips),
     );
   }
 
@@ -89,10 +135,18 @@ class _CocktailsScreenState extends State<CocktailsScreen> {
   }
 
   Widget _emptyState(BarState state) {
-    if (_query.trim().isNotEmpty) {
+    if (_query.trim().isNotEmpty || _base != null) {
       return const EmptyState(
         title: 'Nada encontrado',
-        message: 'Nenhum coquetel com esse nome neste filtro.',
+        message: 'Nenhum coquetel com esse nome ou base neste filtro.',
+      );
+    }
+    if (_filter == _Filter.mine) {
+      return const EmptyState(
+        title: 'Nenhuma receita sua ainda',
+        message:
+            'Toque em "Nova receita" para criar uma, ou use a IA (✨) para '
+            'inventar uma com o que você tem.',
       );
     }
     if (state.owned.isEmpty) {
@@ -124,7 +178,7 @@ class _CocktailsScreenState extends State<CocktailsScreen> {
         message:
             'Adicione mais ingredientes ao seu bar para ver sugestões aqui.',
       ),
-      _Filter.all => const SizedBox.shrink(),
+      _Filter.all || _Filter.mine => const SizedBox.shrink(),
     };
   }
 }

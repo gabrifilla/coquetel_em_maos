@@ -44,3 +44,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Saída do importador de receitas (revisar antes de mesclar)
+/tool/saida/
+# Backend
+/backend/node_modules/
+/backend/.wrangler/
+/backend/.dev.vars

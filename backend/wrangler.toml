@@ -1,0 +1,13 @@
+name = "coquetel-em-maos"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+
+[vars]
+# Troque se o Google lançar/aposentar modelos; confira a lista em ai.google.dev.
+GEMINI_MODEL = "gemini-2.5-flash"
+
+# Limite de 10 pedidos por minuto por IP (plano gratuito do Cloudflare).
+[[ratelimits]]
+name = "RATE_LIMITER"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }

@@ -11,8 +11,10 @@ class BarState extends ChangeNotifier {
   BarState({required this.catalog, required UserDataStore store})
     : _store = store,
       _owned = _onlyKnown(store.readOwned(), catalog.ingredientById),
-      _favorites = _onlyKnown(store.readFavorites(), catalog.cocktailById),
-      _shopping = _onlyKnown(store.readShopping(), catalog.ingredientById) {
+      _shopping = _onlyKnown(store.readShopping(), catalog.ingredientById),
+      _userRecipes = store.readRecipes(),
+      _favorites = store.readFavorites() {
+    _favorites.removeWhere((id) => cocktailById(id) == null);
     _recompute();
   }
 
@@ -22,6 +24,7 @@ class BarState extends ChangeNotifier {
   final Set<String> _owned;
   final Set<String> _favorites;
   final Set<String> _shopping;
+  final List<Cocktail> _userRecipes;
 
   List<CocktailMatch> _matches = const [];
 
@@ -33,6 +36,32 @@ class BarState extends ChangeNotifier {
   bool isFavorite(String cocktailId) => _favorites.contains(cocktailId);
   bool isInShoppingList(String ingredientId) =>
       _shopping.contains(ingredientId);
+
+  /// Receitas do catálogo + as criadas pelo usuário.
+  List<Cocktail> get allCocktails => [...catalog.cocktails, ..._userRecipes];
+
+  List<Cocktail> get userRecipes => List.unmodifiable(_userRecipes);
+
+  Cocktail? cocktailById(String id) {
+    for (final c in _userRecipes) {
+      if (c.id == id) return c;
+    }
+    return catalog.cocktailById(id);
+  }
+
+  /// Destilados que aparecem em pelo menos uma receita, para o filtro por base.
+  List<Ingredient> get baseSpirits {
+    final used = {
+      for (final c in allCocktails) ...c.items.map((i) => i.ingredientId),
+    };
+    return catalog.ingredients
+        .where(
+          (i) =>
+              i.category == IngredientCategory.destilados &&
+              used.contains(i.id),
+        )
+        .toList();
+  }
 
   /// Todos os coquetéis, do mais fácil de fazer (menos faltando) ao mais difícil.
   List<CocktailMatch> get matches => _matches;
@@ -99,6 +128,28 @@ class BarState extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Cria ou atualiza uma receita do usuário (mesmo id = atualiza).
+  void saveRecipe(Cocktail recipe) {
+    final index = _userRecipes.indexWhere((r) => r.id == recipe.id);
+    if (index >= 0) {
+      _userRecipes[index] = recipe;
+    } else {
+      _userRecipes.add(recipe);
+    }
+    _store.saveRecipes(_userRecipes);
+    _recompute();
+    notifyListeners();
+  }
+
+  void deleteRecipe(String id) {
+    _userRecipes.removeWhere((r) => r.id == id);
+    _favorites.remove(id);
+    _store.saveRecipes(_userRecipes);
+    _store.saveFavorites(_favorites);
+    _recompute();
+    notifyListeners();
+  }
+
   void clearShopping() {
     _shopping.clear();
     _store.saveShopping(_shopping);
@@ -107,7 +158,7 @@ class BarState extends ChangeNotifier {
 
   void _recompute() {
     _matches =
-        catalog.cocktails.map((c) => CocktailMatch.evaluate(c, _owned)).toList()
+        allCocktails.map((c) => CocktailMatch.evaluate(c, _owned)).toList()
           ..sort((a, b) {
             final byMissing = a.missingIds.length.compareTo(
               b.missingIds.length,
