@@ -28,7 +28,7 @@ class CocktailImage extends StatelessWidget {
       height: size,
       decoration: BoxDecoration(
         gradient: RadialGradient(
-          colors: [style.bottom.withValues(alpha: 0.16), Party.surfaceHigh],
+          colors: [Color(0xFF45303D), Party.surfaceHigh],
           radius: 0.9,
         ),
       ),

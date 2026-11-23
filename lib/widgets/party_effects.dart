@@ -64,7 +64,7 @@ class _BubblesPainter extends CustomPainter {
     Party.coral,
     Colors.white,
     Party.champagne,
-    Party.pistachio,
+    Party.coral,
   ];
 
   @override

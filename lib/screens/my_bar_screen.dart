@@ -146,7 +146,7 @@ class _Summary extends StatelessWidget {
           stat(
             '$ownedCount',
             ownedCount == 1 ? 'ingrediente' : 'ingredientes',
-            Party.pistachio,
+            Party.coral,
           ),
           Container(width: 1, height: 40, color: Colors.white24),
           stat(

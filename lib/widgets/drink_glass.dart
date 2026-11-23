@@ -201,10 +201,10 @@ class GlassPainter extends CustomPainter {
     switch (style.garnish) {
       case Garnish.lime || Garnish.orange:
         final color = style.garnish == Garnish.lime
-            ? const Color(0xFFB7E34A)
+            ? const Color(0xFFCFDC92)
             : const Color(0xFFFFA62B);
         final peel = style.garnish == Garnish.lime
-            ? const Color(0xFF5DA22A)
+            ? const Color(0xFF86A85A)
             : const Color(0xFFE86A10);
         canvas.drawCircle(rim, r, Paint()..color = peel);
         canvas.drawCircle(rim, r * 0.82, Paint()..color = color);
@@ -240,7 +240,7 @@ class GlassPainter extends CustomPainter {
           rim,
           rim + Offset(r * 0.6, -r * 1.4),
           Paint()
-            ..color = const Color(0xFF5DA22A)
+            ..color = const Color(0xFF86A85A)
             ..strokeWidth = s * 0.02
             ..strokeCap = StrokeCap.round,
         );

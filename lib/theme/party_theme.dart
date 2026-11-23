@@ -11,7 +11,7 @@ abstract final class Party {
   static const outline = Color(0xFF463B50);
 
   static const coral = Color(0xFFEE7F76); // cor principal (do ícone)
-  static const pistachio = Color(0xFFB5D18C); // "você tem tudo"
+  static const pistachio = Color(0xFFB5D18C); // uso raro (detalhes)
   static const champagne = Color(0xFFE6C487); // destaques e "falta pouco"
   static const sea = Color(0xFF86C3BE); // receitas do usuário
   static const grape = Color(0xFFA58FCF);
@@ -228,10 +228,9 @@ abstract final class Party {
       checkboxTheme: CheckboxThemeData(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
         fillColor: WidgetStateProperty.resolveWith(
-          (s) =>
-              s.contains(WidgetState.selected) ? pistachio : Colors.transparent,
+          (s) => s.contains(WidgetState.selected) ? coral : Colors.transparent,
         ),
-        checkColor: const WidgetStatePropertyAll(Color(0xFF1C2600)),
+        checkColor: const WidgetStatePropertyAll(Color(0xFF2B0614)),
         side: const BorderSide(color: textMuted, width: 1.5),
       ),
       dialogTheme: DialogThemeData(

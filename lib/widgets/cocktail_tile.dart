@@ -6,7 +6,6 @@ import '../models/cocktail.dart';
 import '../models/cocktail_match.dart';
 import '../screens/cocktail_detail_screen.dart';
 import '../state/bar_state.dart';
-import '../theme/drink_style.dart';
 import '../theme/party_theme.dart';
 import 'cocktail_image.dart';
 
@@ -21,13 +20,12 @@ class CocktailTile extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     final cocktail = match.cocktail;
     final favorite = state.isFavorite(cocktail.id);
-    final style = DrinkStyle.of(cocktail);
 
     final (String status, Color statusColor) = match.canMake
-        ? ('Você tem tudo', Party.pistachio)
+        ? ('Você tem tudo', Party.champagne)
         : (
             'Falta: ${match.missingIds.map(state.ingredientName).join(', ')}',
-            match.isAlmost ? Party.champagne : Party.textMuted,
+            match.isAlmost ? Party.coral : Party.textMuted,
           );
 
     return Padding(
@@ -47,7 +45,7 @@ class CocktailTile extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(
                 left: BorderSide(
-                  color: match.canMake ? style.bottom : Party.outline,
+                  color: match.canMake ? Party.champagne : Party.outline,
                   width: 3,
                 ),
               ),

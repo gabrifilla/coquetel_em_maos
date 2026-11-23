@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 
 import '../models/cocktail.dart';
 import '../state/bar_state.dart';
-import '../theme/drink_style.dart';
 import '../theme/party_theme.dart';
 import 'ai_warning.dart';
 import 'cocktail_image.dart';
@@ -39,7 +38,6 @@ List<Widget> recipeSections(BuildContext context, Cocktail cocktail) {
   final state = context.watch<BarState>();
   final match = state.matchFor(cocktail);
   final text = Theme.of(context).textTheme;
-  final style = DrinkStyle.of(cocktail);
   final toBuy = match.missingIds
       .where((id) => !state.isInShoppingList(id))
       .toList();
@@ -67,7 +65,7 @@ List<Widget> recipeSections(BuildContext context, Cocktail cocktail) {
         ],
       ),
     const SizedBox(height: 16),
-    _StatusBanner(missing: match.missingIds.length, accent: style.bottom),
+    _StatusBanner(missing: match.missingIds.length, accent: Party.coral),
     const SizedBox(height: 28),
     const _SectionTitle(title: 'Ingredientes'),
     Text(
@@ -90,7 +88,7 @@ List<Widget> recipeSections(BuildContext context, Cocktail cocktail) {
         ),
         subtitle: Text(
           item.optional ? '${item.amount} · opcional' : item.amount,
-          style: TextStyle(color: style.top),
+          style: const TextStyle(color: Party.textMuted),
         ),
       ),
     for (final extra in cocktail.extras)
@@ -133,7 +131,9 @@ List<Widget> recipeSections(BuildContext context, Cocktail cocktail) {
               height: 28,
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                gradient: style.liquid,
+                gradient: const LinearGradient(
+                  colors: [Party.champagne, Party.coral],
+                ),
                 shape: BoxShape.circle,
               ),
               child: Text(
@@ -196,7 +196,7 @@ class _StatusBanner extends StatelessWidget {
         gradient: canMake
             ? LinearGradient(
                 colors: [
-                  Party.pistachio.withValues(alpha: 0.12),
+                  Party.champagne.withValues(alpha: 0.12),
                   accent.withValues(alpha: 0.08),
                 ],
               )
@@ -204,7 +204,7 @@ class _StatusBanner extends StatelessWidget {
         color: canMake ? null : Party.surface,
         border: Border.all(
           color: canMake
-              ? Party.pistachio.withValues(alpha: 0.35)
+              ? Party.champagne.withValues(alpha: 0.35)
               : Party.outline,
         ),
       ),
@@ -214,7 +214,7 @@ class _StatusBanner extends StatelessWidget {
             canMake
                 ? Icons.check_circle_outline
                 : Icons.shopping_basket_outlined,
-            color: canMake ? Party.pistachio : Party.textMuted,
+            color: canMake ? Party.champagne : Party.textMuted,
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -223,7 +223,7 @@ class _StatusBanner extends StatelessWidget {
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.w500,
-                color: canMake ? Party.pistachio : Party.text,
+                color: canMake ? Party.champagne : Party.text,
               ),
             ),
           ),

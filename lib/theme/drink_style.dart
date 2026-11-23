@@ -67,13 +67,14 @@ class DrinkStyle {
       'leite_coco': (Color(0xFFFFFBF2), Color(0xFFF1E3C8)),
       'leite_condensado': (Color(0xFFFFFBF2), Color(0xFFF1E3C8)),
       'creme_leite': (Color(0xFFF2E2CF), Color(0xFFB98A62)),
-      'hortela': (Color(0xFFE4FFB5), Color(0xFF8BD650)),
+      'agua_tonica': (Color(0xFFF2F8FA), Color(0xFFCFE3EA)),
+      'hortela': (Color(0xFFF7F8EE), Color(0xFFDCE5C6)),
       'ginger_beer': (Color(0xFFFFF1BF), Color(0xFFE8B84A)),
       'refrigerante_cola': (Color(0xFF8A4B2A), Color(0xFF2A1208)),
       'espumante': (Color(0xFFFFF6C9), Color(0xFFFFD86B)),
       'suco_toranja': (Color(0xFFFFC2B0), Color(0xFFFF7C6B)),
-      'limao': (Color(0xFFF4FFCF), Color(0xFFC6F35C)),
-      'agua_tonica': (Color(0xFFE9FBFF), Color(0xFFA8E6F5)),
+      // Caipirinha e afins: translúcido, branco com um toque de limão.
+      'limao': (Color(0xFFFBF9EE), Color(0xFFE4E7C8)),
     };
     for (final entry in table.entries) {
       if (ids.contains(entry.key)) return entry.value;

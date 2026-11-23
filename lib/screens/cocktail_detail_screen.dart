@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import '../data/photo_store.dart';
 import '../models/cocktail.dart';
 import '../state/bar_state.dart';
-import '../theme/drink_style.dart';
 import '../theme/party_theme.dart';
 import '../widgets/cocktail_image.dart';
 import '../widgets/party_effects.dart';
@@ -25,7 +24,6 @@ class CocktailDetailScreen extends StatelessWidget {
     if (cocktail == null) return const Scaffold();
 
     final favorite = state.isFavorite(cocktail.id);
-    final style = DrinkStyle.of(cocktail);
 
     return Scaffold(
       body: CustomScrollView(
@@ -55,7 +53,7 @@ class CocktailDetailScreen extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [style.bottom.withValues(alpha: 0.28), Party.night],
+                    colors: [Color(0xFF3A2430), Party.night],
                   ),
                 ),
                 child: BubblesBackground(
